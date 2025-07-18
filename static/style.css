@@ -1,0 +1,121 @@
+/* Google'dan özel bir font import edelim */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+body {
+    /* Yazı tipini tüm sayfada değiştirelim */
+    font-family: 'Poppins', sans-serif;
+    /* Arka plana yumuşak bir gradient ekleyelim */
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    color: #333; /* Ana metin rengi */
+}
+
+/* Kartları (card) daha modern hale getirelim */
+.card {
+    background-color: rgba(255, 255, 255, 0.9); /* Hafif şeffaf beyaz */
+    border: none;
+    /* Modern tarayıcılarda arka planı bulanıklaştırma efekti */
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px); 
+    border-radius: 15px;
+    box-shadow: 0 8px 32px 0 rgba(31, 135, 105, 0.37);
+}
+
+/* Birincil butonların (mavi olanların) rengini değiştirelim */
+.btn-primary {
+    background-color: #ff4081; /* Canlı bir pembe */
+    border-color: #ff4081;
+    font-weight: bold;
+}
+
+/* Butonların üzerine gelince hafifçe büyümesini sağlayalım */
+.btn {
+    transition: transform 0.2s ease-in-out;
+}
+
+.btn:hover {
+    transform: scale(1.05); /* Üzerine gelince %5 büyüt */
+}
+
+/* Başlıkların font ağırlığını artıralım ve renk verelim */
+h1, h2, h3, h4, h5 {
+    font-weight: 700;
+    color: #1e2a78; /* Koyu mavi bir ton */
+}
+
+/* === ANİMASYON KODLARI === */
+
+/* Logo için başlangıç pozisyonu ve animasyon tanımlaması */
+#animated-logo {
+    position: fixed; /* Sayfadaki diğer elementlerden bağımsız hareket etmesi için */
+    z-index: 9999;   /* Her zaman en üstte görünmesi için */
+    
+    /* Animasyonları zincirleme: 
+       1. intro-zoom animasyonu 2 saniye sürsün.
+       2. 2.5 saniye bekledikten sonra move-to-bottom animasyonu 1.5 saniye sürsün.
+       'forwards' kelimesi, animasyon bittiğinde son halinde kalmasını sağlar.
+    */
+    animation: intro-zoom 2s ease-out forwards, 
+               move-to-bottom 1.5s ease-in-out 2.5s forwards;
+    
+    /* Başlangıçta görünmez olması için */
+    opacity: 0;
+}
+
+/* Giriş formunun gecikmeli ve yumuşak bir şekilde belirmesi için animasyon */
+#login-form-container {
+    animation: fade-in 1s ease-in 3.5s forwards;
+    opacity: 0;
+}
+
+
+/* --- Keyframes (Animasyon adımlarının tanımı) --- */
+
+/* 1. Logo'nun ortada belirip büyüme animasyonu */
+@keyframes intro-zoom {
+    from {
+        /* Başlangıç: Ortada, küçük ve görünmez */
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.5);
+        opacity: 0;
+        width: 200px; /* Logonun başlangıç boyutu */
+    }
+    to {
+        /* Bitiş: Ortada, normal boyutunda ve görünür */
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(5);
+        opacity: 1;
+        width: 200px;
+    }
+}
+
+/* 2. Logo'nun aşağı kayma ve küçülme animasyonu */
+@keyframes move-to-bottom {
+    from {
+        /* Başlangıç: Bir önceki animasyonun bittiği yer */
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(5);
+        width: 200px;
+        opacity: 1;
+    }
+    to {
+    /* Bitiş: ALT ORTA, küçük ve görünür */
+    top: 100%;
+    left: 50%; /* <-- DÜZELTİLMİŞ HALİ BU */
+    transform: translate(-50%, -100%) scale(2);
+    width: 200px;
+    opacity: 1;
+}
+}
+
+/* 3. Giriş formunun belirme animasyonu */
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
